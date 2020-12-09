@@ -24,7 +24,7 @@ pub fn part1(numbers: &Vec<i64>) -> i64 {
         valid[im].extend(
             cb.iter()
                 .enumerate()
-                .filter(|(i, _)| *i != im)
+                .filter(|(i, v)| *i != im && *v != n)
                 .map(|(_, v)| v + n),
         );
     }
