@@ -61,7 +61,7 @@ impl Program {
 
 pub fn parse_code<'t>(code: &'t str) -> impl Iterator<Item = Option<Op>> + 't {
     code.lines().map(|line| {
-        let parts = line.split(" ").collect::<Vec<&str>>();
+        let parts = line.split(' ').collect::<Vec<&str>>();
         if parts.len() != 2 {
             return None;
         }

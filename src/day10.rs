@@ -38,7 +38,7 @@ fn dfs(mut cache: &mut HashMap<usize, usize>, aa: &[bool; 256], start: usize, en
     }
     let count = neighbours(aa, start).map(|n| dfs(&mut cache, aa, n, end)).sum();
     cache.insert(start, count);
-    return count;
+    count
 }
 
 #[aoc(day10, part2)]
