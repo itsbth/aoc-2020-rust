@@ -34,6 +34,7 @@ pub fn part1(input: &Input) -> i64 {
 
 // heavily inspired by / nabbed from https://rosettacode.org/wiki/Chinese_remainder_theorem#Rust
 
+#[allow(clippy::many_single_char_names)]
 fn egcd(a: i64, b: i64) -> (i64, i64, i64) {
     if a == 0 {
         (b, 0, 1)
