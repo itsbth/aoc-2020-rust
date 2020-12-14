@@ -1,5 +1,6 @@
 use aoc_runner_derive::{aoc, aoc_generator};
 use std::str::FromStr;
+use num::integer::lcm;
 
 type Input = (i64, Vec<Option<i64>>);
 
@@ -72,4 +73,22 @@ pub fn part2(input: &Input) -> i64 {
         }
     }
     chinese_remainder(&gs[..], &ns[..]).unwrap()
+}
+
+#[aoc(day13, part2, Sharp)]
+pub fn part2_sharp(input: &Input) -> i64 {
+    let mut ns = Vec::<i64>::new();
+    let mut gs = Vec::<i64>::new();
+    for (c, n) in input.1.iter().enumerate() {
+        if let Some(n) = n {
+            ns.push(*n);
+            gs.push(c as i64);
+        }
+    }
+    let mut cur = 0;
+    loop {
+        let valid = ns.iter().zip(gs.iter()).filter(|(&n, &o)| (cur + o) % n == 0).collect::<Vec<_>>();
+        if valid.len() == ns.len() { return cur; }
+        cur += valid.iter().map(|(n, _)| n).fold(1, |a, b| lcm(a, **b));
+    }
 }
