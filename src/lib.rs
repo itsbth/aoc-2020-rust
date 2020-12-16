@@ -1,4 +1,6 @@
 #![deny(clippy::all)]
+// blame cargo-aoc
+#![allow(clippy::ptr_arg)]
 // #![deny(clippy::pedantic)]
 
 use aoc_runner_derive::aoc_lib;
