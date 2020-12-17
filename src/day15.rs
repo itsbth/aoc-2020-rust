@@ -46,3 +46,26 @@ pub fn part2(code: &Input) -> i64 {
     }
     last
 }
+
+const SENTINEL: usize = usize::MAX;
+
+#[aoc(day15, part2, Vec)]
+pub fn part2_vec(code: &Input) -> i64 {
+    let mut seen = vec![SENTINEL; 30000000];
+    let mut last = *code.iter().last().unwrap();
+    for (idx, n) in code[..code.len() - 1].iter().enumerate() {
+        // seen.insert(*n, idx);
+        seen[*n as usize] = idx;
+    }
+    for i in code.len()..30000000 {
+        let cur = if seen[last as usize] != SENTINEL {
+            i - seen[last as usize] - 1
+        } else {
+            0
+        };
+        // seen.insert(last as i64, i - 1);
+        seen[last as usize] = i - 1;
+        last = cur as i64;
+    }
+    last
+}
